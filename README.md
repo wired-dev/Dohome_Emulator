@@ -1,5 +1,8 @@
 # Dohome_Emulator
 I've built a Simple emulator for this bulb your want to setup a hostname file with redirects for it's two host names to your server but otherwise appers to work. it's based upon php/Swoole.
+names to reditrect:
+led_iot.doit.am 
+xinfeng.doit.am
 
 Research Notes:
 {"cmd":4}
