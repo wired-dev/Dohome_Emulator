@@ -86,28 +86,50 @@ $http->on('request', function ($request, $response) use ($table,$static,$db,$cie
                 $id=$request->get['id'];
                 if(isset($request->post['rVal'])) {
                     $rVal =ltrim($request->post['rVal'],'0');
+                if(empty($rVal)){
+                    $rVal=0;
+                }
                 } else {
                     $rVal = Reverse_CIE_Lookup($table->get($id,'r'),$cietable);
                 }
                 if(isset($request->post['gVal'])) {
                     $gVal = ltrim($request->post['gVal'],'0');
+                if(empty($gVal)){
+                    $gVal=0;
+                }
                 } else {
                     $gVal = Reverse_CIE_Lookup($table->get($id,'g'),$cietable);
                 }
                 if(isset($request->post['bVal'])) {
                     $bVal =ltrim($request->post['bVal'],'0');
+                if(empty($bVal)){
+                    $bVal=0;
+                }
                 } else {
                     $bVal = Reverse_CIE_Lookup($table->get($id,'b'),$cietable);
                 }
                 if(isset($request->post['wVal'])) {
                     $wVal = ltrim($request->post['wVal'],'0');
+                if(empty($wVal)){
+                    $wVal=0;
+                }
                 } else {
                     $wVal = Reverse_CIE_Lookup($table->get($id,'w'),$cietable);
                 }
                 if(isset($request->post['mVal'])) {
                     $mVal = ltrim($request->post['mVal'],'0');
+                if(empty($mVal)){
+                    $mVal=0;
+                }
                 } else {
                     $mVal = $table->get($id,'m');
+                }
+                        $rValm = $cietable[$rVal];
+                        $gValm = $cietable[$gVal];
+                        $bValm = $cietable[$bVal];
+                        $wValm = $cietable[$wVal];
+                if(empty($dev_mode)){
+                    $dev_mode=1;
                 }
                 if(isset($request->post['dev_index'])) {
                     $indexVal = ltrim($request->post['dev_index'],'0');
@@ -124,28 +146,6 @@ $http->on('request', function ($request, $response) use ($table,$static,$db,$cie
                 } else {
                     $dev_mode = $table->get($id,'dev_mode');;
                 }
-                if(empty($dev_mode)){
-                    $dev_mode=1;
-                }
-                if(empty($rVal)){
-                    $rVal=0;
-                }
-                if(empty($gVal)){
-                    $gVal=0;
-                }
-                if(empty($bVal)){
-                    $bVal=0;
-                }
-                if(empty($wVal)){
-                    $wVal=0;
-                }
-                if(empty($mVal)){
-                    $mVal=0;
-                }
-                        $rValm = $cietable[$rVal];
-                        $gValm = $cietable[$gVal];
-                        $bValm = $cietable[$bVal];
-                        $wValm = $cietable[$wVal];
                 if($request->post){
                     if(isset($request->post['Save'])){
                         $db->exec("UPDATE devices SET r = $rValm,g = $gValm,b = $bValm,w = $wValm,m = $mVal,_index=$indexVal, dev_mode=$dev_mode WHERE dev_id='" . "$id" . "';");
@@ -221,7 +221,7 @@ $http->on('request', function ($request, $response) use ($table,$static,$db,$cie
             if($status['type']== 1){
                 if(strcmp($table->get($id,'dev_mode'),"1") == 0){
                     if(($table->get($id,'r') != $status['r'])||($table->get($id,'g') != $status['g'])||($table->get($id,'b') != $status['b'])||($table->get($id,'w') != $status['w'])||($table->get($id,'m') != $status['m'])){
-                        bulb_tcp_send($table->get($id,'ip'),"{\"cmd\":6,\"r\":".$rValm.",\"g\":".$gValm.",\"b\":".$bValm.",\"w\":".$wValm.",\"m\":".$mVal . "}\r\n");
+                        bulb_tcp_send($table->get($id,'ip'),"{\"cmd\":6,\"r\":".$table->get($id,'r').",\"g\":".$table->get($id,'g').",\"b\":".$table->get($id,'b') . ",\"w\":" . $table->get($id,'w') . ",\"m\":" . $table->get($id,'m') . "}\r\n");
                     }
                 } else if(strcmp($table->get($id,'dev_mode'),"3") == 0){
                     if((date('H') >= 0)&&(date('H') <=8)){
