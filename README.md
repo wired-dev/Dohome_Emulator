@@ -4,6 +4,9 @@ names to reditrect:
 led_iot.doit.am 
 xinfeng.doit.am
 
+https://github.com/SmartArduino/SZDOITWiKi/wiki/Smart-Bulb for the bulbs manual.
+
+
 Research Notes:
 {"cmd":4}
 {"res":0,"cmd":4,"ver":"3.9.8","dev_id":"840d8e4575a9_LED_DOIT","conn":1,"remote":1,"save_off_stat":1,"repeater":0,"portal":0}
