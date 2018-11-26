@@ -1,7 +1,11 @@
 this bulb uses a ESP m2 modules with io16 exposed but the pinout works for programming
+
 gpio 05 green
+
 gpio 12 red
+
 gpio 14 blue
+
 gpio 04 white
 
 
