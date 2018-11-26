@@ -1,3 +1,11 @@
+this bulb uses a ESP m2 modules with io16 exposed but the pinout works for programming
+gpio 05 green
+gpio 12 red
+gpio 14 blue
+gpio 04 white
+
+
+
 # Dohome_Emulator
 I've built a Simple emulator for this bulb your want to setup a hostname file with redirects for it's two host names to your server but otherwise appers to work. it's based upon php/Swoole.
 names to reditrect:
